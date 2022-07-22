@@ -1,0 +1,48 @@
+<html>
+<title>Contact Us</title>
+
+<head>
+    <!-- this is the external style sheet from Bootstrap using a CDN-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script>
+        // this function checks the textboxes to see if there is anything in them.  If there isn't then it 
+        // turns the textbox red, gives it focus and prints out a required message
+        function checkboxes()
+        {
+            var firstName = document.getElementById("fName").value;
+            if(firstName == "")
+            {
+                document.getElementById("fName").focus();
+                document.getElementById("fName").style.backgroundColor = "red";
+                document.getElementById("fNameMessage").innerHTML = "* Required";
+                document.getElementById("fNameMessage").style.color = "red";
+                
+                return false;
+            }
+            // need to check for the other textbox and also remove the red and the required message
+            // something is filled in.
+        }
+    </script>
+</head>
+
+</head>
+
+<body style="background-color: beige;">
+    <div style="margin-left: 35px;">
+        <h1>Contact Us</h1>
+        <p></p>
+        
+            <p>First Name: <input type="text" id="fName">&nbsp;<span id="fNameMessage"></span></p>
+            <p>Last Name: <input type="text" id="lName"></p>
+            <button id="btnSubmit" class="btn btn-primary" onclick='checkboxes();'>Submit My Info</button>
+        
+        <p><a href="page1.html">Home Page</a>
+            &nbsp;|&nbsp;<a href="page2.html">Short Story</a></p>
+    </div>
+</body>
+
+</html>

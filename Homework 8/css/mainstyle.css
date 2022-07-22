@@ -1,0 +1,42 @@
+/* this just looks for any body tags in the page */
+body{
+    background-color: beige;
+    background-image: url('../images/goldilocks.jpg');
+    background-blend-mode:luminosity;
+}
+
+/* this is a class selector */
+.content{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 24px;
+    color:brown;
+}
+
+/* this is a class selector */
+.title
+{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 42px;
+    color:black;
+}
+
+/* this is an id selector */
+#home{
+    color:midnightblue;
+}
+
+/* this is an id selector */
+#contact{
+    color:darkslategray;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+a{
+    text-decoration: none;
+    font-size: 32px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+}
