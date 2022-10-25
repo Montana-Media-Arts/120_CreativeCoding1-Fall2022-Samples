@@ -1,80 +1,132 @@
-var headX = 250;
-var headY = 100;
-var headDirection = 1;
+// x and y for my character
+var characterX = 100;
+var characterY = 100;
+// define the key codes for each letter
+var w = 87; 
+var s = 83;
+var a = 65;
+var d = 68;
 
-var bodyX = 200;
-var bodyY = 185;
-var bodyDirection = 3;
+// x and y for a shape
+var shapeX = 30;
+var shapeY = 50;
+var shapeXSpeed;
+var shapeYSpeed;
 
-var size = 22;
-var count = 0;
-var sizeDirection = 2;
+// create a shape when the mouse is clicked
+var mouseShapeX;
+var mouseShapeY;
 function setup()
 {
     createCanvas(500, 600);
+    // get a random speed when the it first starts
+    shapeXSpeed = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
+    shapeYSpeed = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
 }
 
 function draw()
 {
     background(120,45,78);
-    textSize(22)
-    text("Good morning!", 10,80);
-
-    // head
-    fill(255, 204, 0);
-    circle(headX,headY,175);
-    headX+=headDirection;
-    if(headX >= 418 || headX <= 82)
-    {
-        headDirection *= -1;
-    }
-
-    // eyes
-    strokeWeight(10);
+    stroke(0);
     fill(0);
-    point(200,75);
-    point(285,75);
+    // top border
+    rect(0,0,width,10);
+    // left border
+    rect(0,0,10,height);
+    // bottom border
+    rect(0, height-10,width, 10);
+    // right upper border
+    rect(width-10,0,10,height-50);
 
-    // nose
-    point(245,90);
-    
-    // mouth
-    ellipse(245, 135, 30, 45)
+    // exit message
+    textSize(16);
+    text("EXIT", width-50,height-50)
 
-    // hair
-    line(130,175,175,50);
-    line(325,50,360,175);
-    // body
-    fill(10, 24, 120);
-    rect(200,bodyY,100,150);
-    bodyY += bodyDirection;
-    if(bodyY <= 0 || bodyY >= 450 )
+    //character
+    fill(23,40,123);
+    circle(characterX,characterY,25);
+
+    // handle the keys
+    if(keyIsDown(w))
     {
-        bodyDirection *= -1;
+        characterY -= 10;   
     }
-    // decoration
-    fill(255);
-    triangle(220,320,250,220,280,320)
-    // right arm
-    fill(10, 24, 120);
-    rect(300,195,50,10);
-    // left arm
-    rect(150,195,50,10);
-    // left leg
-    rect(200,335,10,50);
-    // right leg
-    rect(290,335,10,50);
-    
-    fill(120);
-    textSize(size);
-    size+= sizeDirection;
-    count++;
-    if(count > 5)
+    if(keyIsDown(s))
     {
-        sizeDirection *=-1;
-        count = 0;
+        characterY += 10;   
     }
-    text("Michael Cassens",270,500 );
+    if(keyIsDown(a))
+    {
+        characterX -= 10;   
+    }
+    if(keyIsDown(d))
+    {
+        characterX += 10;   
+    }
 
+    // potential enemy
+    fill(13,145,14);
+    // draw the shape
+    circle(shapeX, shapeY, 10);
 
+     // get a random speed when the it first starts
+     shapeXSpeed = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
+     shapeYSpeed = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
+
+    // move the shape
+    shapeX += shapeXSpeed;
+    shapeY += shapeYSpeed;
+    // check to see if the shape has gone out of bounds
+    if(shapeX > width)
+    {
+        shapeX = 0;
+    }
+    if(shapeX < 0)
+    {
+        shapeX = width;
+    }
+    if(shapeY > height)
+    {
+        shapeY = 0;
+    }
+    if(shapeY < 0)
+    {
+        shapeY = height;
+    }
+
+    // check to see if the character has left the exit
+    if(characterX > width && characterY > width-50)
+    {
+        fill(0);
+        stroke(5);
+        textSize(26);
+        text("You Win!", width/2-50, height/2-50);
+    }
+
+    // create the shape based on the mouse click
+    fill(120,130,140);
+    circle(mouseShapeX, mouseShapeY, 25);
 }
+
+function mouseClicked()
+{
+    mouseShapeX = mouseX;
+    mouseShapeY = mouseY;
+}
+/*
+function keyPressed() {
+    if (keyCode === LEFT_ARROW) {
+        characterX -= 10;
+    } 
+    else if (keyCode === RIGHT_ARROW) {
+        characterX += 10;
+    }
+    else if (keyCode === UP_ARROW) {
+        characterY -= 10;
+    }
+    else if (keyCode === DOWN_ARROW) {
+        characterY += 10;
+    }
+
+  }
+  */

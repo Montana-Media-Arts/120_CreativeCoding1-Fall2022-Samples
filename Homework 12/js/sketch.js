@@ -22,6 +22,7 @@ function setup()
     // get a random speed when the it first starts
     shapeXSpeed = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
     shapeYSpeed = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
+    createCharacter(200,350);
 }
 
 function draw()
@@ -29,40 +30,18 @@ function draw()
     background(120,45,78);
     stroke(0);
     fill(0);
-    // top border
-    rect(0,0,width,10);
-    // left border
-    rect(0,0,10,height);
-    // bottom border
-    rect(0, height-10,width, 10);
-    // right upper border
-    rect(width-10,0,10,height-50);
+    
+    // call createBorders function
+    createBorders(10);
 
     // exit message
     textSize(16);
     text("EXIT", width-50,height-50)
 
-    //character
-    fill(23,40,123);
-    circle(characterX,characterY,25);
+    //createCharacter(200,350);
+    drawCharacter();
+    characterMovement();
 
-    // handle the keys
-    if(keyIsDown(w))
-    {
-        characterY -= 10;   
-    }
-    if(keyIsDown(s))
-    {
-        characterY += 10;   
-    }
-    if(keyIsDown(a))
-    {
-        characterX -= 10;   
-    }
-    if(keyIsDown(d))
-    {
-        characterX += 10;   
-    }
 
     // potential enemy
     fill(13,145,14);
@@ -106,6 +85,54 @@ function draw()
     // create the shape based on the mouse click
     fill(120,130,140);
     circle(mouseShapeX, mouseShapeY, 25);
+}
+
+function characterMovement()
+{
+    // handle the keys
+    if(keyIsDown(w))
+    {
+        characterY -= 10;   
+    }
+    if(keyIsDown(s))
+    {
+        characterY += 10;   
+    }
+    if(keyIsDown(a))
+    {
+        characterX -= 10;   
+        console.log("movement: " + characterX);
+    }
+    if(keyIsDown(d))
+    {
+        characterX += 10;   
+    }
+}
+function createCharacter(x,y)
+{
+    characterX = x;
+    characterY = y;
+    console.log(characterX);
+    //character
+    
+   // circle(characterX,characterY,25);
+}
+
+function drawCharacter()
+{
+    fill(23,40,123);
+    circle(characterX,characterY,25);
+}
+function createBorders(thickness)
+{
+    // top border
+    rect(0,0,width,thickness);
+    // left border
+    rect(0,0,thickness,height);
+    // bottom border
+    rect(0, height-thickness,width, thickness);
+    // right upper border
+    rect(width-thickness,0,thickness,height-50);
 }
 
 function mouseClicked()
